@@ -1,0 +1,101 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script src="~/js/jquery-1.7.1.min.js"></script>
+<script src="~/js/zDialog.js"></script>
+<script src="~/js/zDrag.js"></script>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>栏目添加</title>
+</head>
+<body>
+
+    <table width="98%" cellspacing="0" cellpadding="0" border="0" class="blockTable">
+        <tr>
+            <td width="65%" style="padding: 6px 10px;" class="blockTd">
+                <div class="mframe">
+                    <table width="95%" cellspacing="0" cellpadding="0" style="border-bottom: #ddd 1px solid;">
+                        <tr>
+                            <td class="mm">
+                                <table id="color_code" runat="server" style="width: 100%; padding-bottom: 5px;">
+                                    <tr align="right">
+                                        <td align="left">
+                                            当前位置：<%= MIC.AdminCommon.ReadCurrentDirectory(MIC.Common.ConvertToInt(MIC.AdminCommon.ColumnTypeID.栏目列表, -1))%> > 新建父级
+                                        </td>
+                                        <td align="right"></td>
+                                    </tr>
+                                </table>
+                                <div style="padding-bottom: 5px; text-align: center;">
+                                    <asp:Button ID="Submit" Text="保存" OnClick="Submit_OnClick" runat="server" CssClass="btn_gray" />
+                                    <input type="button" onclick="Dialog.close();" value="关闭" class="btn_gray" />
+                                </div>
+                                <table class="server" cellpadding="0" cellspacing="1" style="width: 100%;">
+                                    <tr style="height: 30px;">
+                                        <td style="width: 100px; text-align: right;">
+                                            栏目名称：
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="TextBox1" runat="server" Width="80%" CssClass="inputtext"></asp:TextBox>
+                                            <span class="explain">必填项</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;">
+                                        <td style="width: 100px; text-align: right;">
+                                            排序：
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="TextBox3" runat="server" Width="100px" CssClass="inputtext"></asp:TextBox>
+                                            <span class="explain">必填项，填写大于0的正整数</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;">
+                                        <td style="width: 100px; text-align: right;">
+                                            打开类型：
+                                        </td>
+                                        <td>
+                                            <asp:RadioButtonList ID="RadioButtonListUrlTarget" runat="server"
+                                                                 RepeatDirection="Horizontal" RepeatLayout="Flow">
+                                                <asp:ListItem Value="1" Selected="True">当前窗口</asp:ListItem>
+                                                <asp:ListItem Value="2">新窗口</asp:ListItem>
+                                            </asp:RadioButtonList>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;">
+                                        <td style="width: 100px; text-align: right;">
+                                            默认加载链接：
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="TextBoxDefaultUrl" runat="server" Width="80%" CssClass="inputtext"></asp:TextBox>
+                                            <span class="explain">必填项</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;">
+                                        <td style="width: 100px; text-align: right;">
+                                            栏目说明：
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="TextBox2" runat="server" Width="90%" Height="70" TextMode="MultiLine"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div style="padding: 5px; text-align: center;">
+                                                <asp:Button ID="Button1" Text="保存" OnClick="Submit_OnClick" runat="server" CssClass="btn_gray" />
+                                                <input type="button" onclick="Dialog.close();" value="关闭" class="btn_gray" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

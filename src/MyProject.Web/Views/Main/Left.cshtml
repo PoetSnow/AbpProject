@@ -1,0 +1,110 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Left</title>
+    <style type='text/css'>
+        body {
+            background: #ffffff;
+        }
+
+        a {
+            color: #555555;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+            a:hover {
+                color: #555555;
+                text-decoration: none;
+                white-space: nowrap;
+            }
+
+        .blockhide {
+            display: none;
+        }
+
+        .blockmove {
+            overflow: hidden;
+            height: 1px;
+            display: block;
+        }
+
+        .blockshow {
+            overflow: visible;
+            display: block;
+        }
+
+        .hideme {
+            display: none;
+        }
+
+        .showme {
+        }
+
+        .faisunMenu td {
+            font-size: 12px;
+        }
+
+        .explain {
+            background: #FEFFEF url(Images/admin.gif) no-repeat 0 0;
+            border: 1px solid #D1D401;
+            color: #666;
+            padding: 3px 5px 1px 20px;
+            line-height: 30px;
+            font-weight: normal;
+        }
+    </style>
+    <link href="~/css/Login/manage.css" rel="stylesheet" />
+    <link href="~/css/admin/l.css" rel="stylesheet" />
+</head>
+<body  >
+    <div>
+        <table class="blockTable" cellspacing="0" cellpadding="6" border="0" style="width:180px;">
+            <tr>
+                <td class="blockTd" style=" padding:5px;">
+                    <div class="treeContainer">
+                        <div class='blockshow treeItem' id='item0'>
+                      @Html.Raw(ViewData["typeid"])
+                           
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src="~/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#item0 a").click(function() {
+                $("#item0 table[name='tableItem']").removeClass("treeItemCur");
+                $("#tableItem" + $(this).attr("name")).addClass("treeItemCur");
+            })
+        })
+        // 变更展开或是折叠状态的图标
+        function showhideit(itemNo) {
+            var showfolder = $("img[name='openedfolderimage" + itemNo + "']");
+            var hidefolder = $("img[name='closedfolderimage" + itemNo + "']");
+            var subfiles = $("#item" + itemNo);
+            if ($(showfolder).css("display") != "none") {
+                $(showfolder).hide();
+                $(hidefolder).show();
+                // 显示对应DIV
+                $(subfiles).hide();
+            }
+            else {
+                $(showfolder).show();
+                $(hidefolder).hide();
+                // 显示对应DIV
+                $(subfiles).show();
+            }
+        }
+    </script>
+</body>
+</html>

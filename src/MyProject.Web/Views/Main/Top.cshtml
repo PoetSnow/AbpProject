@@ -1,0 +1,104 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model MyProject.Web.Models.Mic_Admin.UserInfo
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Top</title>
+    <link href="~/css/Login/manage.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0px;
+        }
+
+        a {
+            font-family: 宋体,arial;
+            color: yellow;
+            text-decoration: none;
+        }
+
+        table {
+        }
+
+        td {
+            font-size: 12px; /* filter: dropshadow(color=#FFFFFF,offx=1,offy=1);*/
+            color: #fff;
+        }
+
+        img {
+            filter: alpha(opacity:100);
+            chroma: ((color=#FFF);
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {           
+             $("#_Navigation a").click(function () {
+                 $(this).addClass("current").siblings().removeClass("current");
+             })
+        })
+        function OnClickA(obj) {
+            try {
+                var a = document.getElementById(obj);
+                //取消<a>标签原先的onclick事件,使<a>标签点击后通过href跳转(因为无法用js跳转)^-^
+                a.setAttribute("onclick", '');
+                //激发标签点击事件OVER
+                a.click("return false");
+            }
+            catch (ex) { }
+        }
+    </script>
+
+</head>
+<body>
+    <div>
+        <table width="100%" cellpadding="0" cellspacing="0" height="70" style="background: url('../../Images/top/vistaBlue.jpg') repeat-x scroll left top #3388BB;">
+            <tr valign="middle">
+                <td width="245px">
+                    <img src="../../Images/top/ManageLogo.png" alt="" />
+                </td>
+                <td valign="bottom">
+                    <div style="margin-bottom: 15px; margin-top: 5px;">
+                        <span style="font-family: arial; padding-right: 20px; float: right;">
+                            用户名：@Model.UserName
+                            [
+                            <a href="role/master_update.aspx?user=@Model.Id" target="right">
+                                修改密码
+                            </a>
+                            |
+                            <a href="admin_logout.aspx" target="top" onclick="javascript:if(window.confirm('是否退出？')==false) return false">
+                                退出管理
+                            </a>
+                            ]
+                        </span>
+                    </div>                  
+                    <table cellspacing="0" cellpadding="0" border="0" style="">
+                        <tbody>
+                            <tr>
+                                <td align="center">
+                                    <div class="navigation" id="_Navigation">   
+                                        @Html.Raw(ViewData["UrlList"])
+                                        @*<a href="Left?typeid=2" target="left" style="padding-left:10px;" class="current"><b>首页</b></a>
+                                        <a href="Left?typeid=3" target="left" style="padding-left:10px;"><b>内容管理</b></a>
+                                        <a href="Left?typeid=4" target="left" style="padding-left:10px;"><b>人力资源</b></a>
+                                        <a href="Left?typeid=5" target="left" style="padding-left:10px;"><b>留言管理</b></a>
+                                        <a href="Left?typeid=6" target="left" style="padding-left:10px;"><b>系统设置</b></a>
+                                        <a href="Left?typeid=1" target="left" style="padding-left:10px;"><b>系统开发</b></a>*@
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+               
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

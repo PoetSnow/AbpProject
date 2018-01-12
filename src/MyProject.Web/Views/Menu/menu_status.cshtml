@@ -1,0 +1,90 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="~/css/Login/manage.css" rel="stylesheet" />
+<link href="~/css/Login/c.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>menu_status</title>
+    <script src="~/js/jquery-1.7.1.min.js"></script>
+    <script src="~/js/zDrag.js"></script>
+    <script src="~/js/zDialog.js"></script>
+    <style>
+        a:hover {
+            color: #FF6600;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        //
+        $(function () {
+            //给选中的行添加样式
+            $(".dataTable tr").click(function () {
+                if ($(this).index() != 0) {
+                    $(this).addClass("current").siblings().removeClass("current");
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <table width="98%" cellspacing="0" cellpadding="0" border="0" class="blockTable">
+        <tr>
+            <td width="65%" style="padding: 6px 10px;" class="blockTd">
+                <div class="mframe">
+                    <table width="95%" align="center" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td class="mm">
+                                <table id="color_code" runat="server" style="width: 100%; padding-bottom: 5px;">
+                                    <tr align="right">
+                                        <td align="left">
+                                            当前位置：<%= MIC.AdminCommon.ReadCurrentDirectory(MIC.Common.ConvertToInt(MIC.AdminCommon.ColumnTypeID.栏目列表, -1)) %>
+                                        </td>
+                                        <td align="right"></td>
+                                    </tr>
+                                </table>
+                                <div style="padding-bottom: 5px;" class="sidebox">
+                                    <input type="button" value="新建父级" onclick="menu_add()" class="btn_gray" />
+                                    <input type="button" value="新建子级" onclick="addlitle()" class="btn_gray" />
+                                    <input type="button" value="编辑" onclick="menu_update()" class="btn_gray" />
+                                    <input type="button" value="启用" onclick="return ShowAll();" class="btn_gray" />
+                                    <input type="button" value="禁用" onclick="return HideAll();" class="btn_gray" />
+                                    <input type="button" value="删除" onclick="return confirm('是否删除？删除之后数据不可恢复！')"  class="btn_gray" />
+                                    
+                                </div>
+                                <table class="dataTable" cellspacing="1" cellpadding="1" style="text-align: center; width: 100%;">
+                                    <tr class="dataTableHead" style="height: 30px; font-weight: bold;">
+                                        <td style="width: 30px;">
+                                            <input id="Checkbox1" name="chkall" type="checkbox" onclick="CheckAll(this.checked)" style="border: 0;" class="If" />
+                                        </td>
+                                        <td style="width: 40px;">状态</td>
+                                        <td style="text-align: left;">&nbsp;&nbsp;栏目名称</td>
+                                        <td style="text-align: left;">&nbsp;&nbsp;链接地址</td>
+                                    </tr>
+                                   @Html.Raw(ViewData["htmlStr"])                                   
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        //新建父级
+        function menu_add() {
+            var diag = new Dialog();
+            diag.Width = $(document.body).width();
+            diag.Height = $(document.body).outerWidth(true);
+            diag.Title = "新建父级";
+            diag.URL = "menu_Add";
+            diag.show();
+        }
+    </script>
+</body>
+</html>

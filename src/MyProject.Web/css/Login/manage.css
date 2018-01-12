@@ -1,0 +1,132 @@
+﻿body { margin:0px; padding:0px; color:#555555;
+}
+
+
+.blockTable {
+    background: url("../../Images/tableBg_left.gif") no-repeat scroll left top transparent;
+    border: 0 solid #BBBBBB;
+    margin: 8px;
+    min-width: 180px;
+    
+}
+.blockTd {
+    background: url("../../Images/tableBg_right.gif") no-repeat scroll right top transparent;
+}
+.treeContainer { height:435px; position:relative;}
+.treeItem {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../../Images/treeItem_bg.gif") no-repeat scroll left top #F9FCFF;
+    border-color: #CCD3D6 #E8EBEE #E8EBEE #DDDFE2;
+    border-image: none;
+    border-right: 1px solid #E8EBEE;
+    border-style: solid;
+    border-width: 1px;
+    /*height: 99%;*/
+    overflow: auto;
+    padding:8px 0 5px 5px;
+
+}
+/*.blockTable {
+    background: url("../Images/tableBg_left.gif") no-repeat scroll left top transparent;
+    border: 0 solid #BBBBBB;
+    
+}*/
+
+.navigation a:hover, .navigation a.current {
+    background: url("../../images/top/nav_btnbg_over.gif") no-repeat scroll 0 0 transparent;
+    text-decoration: none;
+}
+.navigation a {
+    -moz-user-select: none;
+    background: url("../../Images/top/nav_btnbg.png") no-repeat scroll 0 0 transparent;
+    color: #DDFFFF;
+    cursor: pointer;
+    float: left;
+    font-family: SimSun;
+    font-size: 13px;
+    height: 30px;
+    padding: 0 0 0 15px;
+}
+
+.navigation a.current b {
+    font-weight: bold;
+}
+.navigation a:hover b, .navigation a.current b {
+    background: url("../../Images/top/nav_btnbg_over.gif") no-repeat scroll right 0 transparent;
+    color: #0066AA;
+}
+.navigation a b {
+    background: url("../../Images/top/nav_btnbg.png") no-repeat scroll right 0 transparent;
+    display: inline-block;
+    font-weight: normal;
+    height: 23px;
+    padding: 7px 15px 0px 0;
+    white-space: nowrap;
+}
+
+table.dataTable {
+    background: url("../../Images/thbg.gif") repeat-x scroll left top #FFFFFF;
+    border: 1px solid #C6C6C6;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+table.dataTable tr.dataTableHead td,table.dataTable tr.dataTableHead th {
+    background: url("../../Images/th.gif") no-repeat scroll left top transparent;
+    border-bottom: 0 solid #C6C6C6;
+    border-left: 0 solid #D6D6D6;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 6px;
+}
+
+.treeItemCur {
+    background: url("../../Images/treeItemBgCur.gif") repeat-x scroll left center #EAFBC9;
+    border-left: 0px solid #B1CCA2;
+    border-right: 1px solid #B1CCA2;
+    color: #222222;
+}
+
+.btn_gray 
+{
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff',endColorstr='#d7d7d7',GradientType=0 ); BORDER-LEFT: #888 1px solid;
+    background: #f3f3f3;
+    background: -moz-linear-gradient(center top , #FFFFFF 0%, #EBEBEB 90%, #F3F3F3 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #888888;
+    color: #555555 !important;
+    -moz-user-select: none;
+    border-radius: 3px 3px 3px 3px;
+    cursor: default;
+    display: inline-block;
+    font-family: Simsun;
+    height: 22px;
+    line-height: 22px;
+    margin: 0;
+
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor:pointer;
+}
+.btn_gray:hover {
+    background: -moz-linear-gradient(center top , #FFFFFF 0%, #EBEBEB 90%, #F3F3F3 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #FF6600;
+    color: #FF6600 !important;
+    -moz-user-select: none;
+    border-radius: 3px 3px 3px 3px;
+    cursor: default;
+    display: inline-block;
+    font-family: Simsun;
+    height: 22px;
+    line-height: 22px;
+    margin: 0;
+    min-width: 24px;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor:pointer;
+}

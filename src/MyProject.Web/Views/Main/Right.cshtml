@@ -1,0 +1,103 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/css/Login/manage.css" rel="stylesheet" />
+<link href="~/css/Login/c.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Right</title>
+</head>
+<body>
+    <table width="98%" cellspacing="0" cellpadding="0" border="0" class="blockTable">
+        <tr>
+            <td width="65%" style="padding: 6px 10px;" class="blockTd">
+                <div class="mframe">
+                    <table width="95%" align="center" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td class="mm">
+                                <table id="color_code" runat="server" style="width: 100%; padding-bottom: 5px;">
+                                    <tr align="right">
+                                        <td align="left">
+                                            当前位置：<%= MIC.AdminCommon.ReadCurrentDirectory(MIC.Common.ConvertToInt(MIC.AdminCommon.ColumnTypeID.系统信息, -1)) %>
+                                        </td>
+                                        <td align="right"></td>
+                                    </tr>
+                                </table>
+                                <table width="96%" align="center" class="server" cellspacing="1" cellpadding="0">
+                                    <tr>
+                                        <td width="50%">
+                                            服务器名：<%=System.Environment.MachineName%>
+                                        </td>
+                                        <td>
+                                            服务器IP：<%=Request.ServerVariables["LOCAL_ADDR"]%>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%">
+                                            服务器IIS版本：<%=Request.ServerVariables["SERVER_SOFTWARE"]%>
+                                        </td>
+                                        <td>
+                                            虚拟目录绝对路径：<%= Request.ServerVariables["APPL_PHYSICAL_PATH"]%>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%">
+                                            操作系统：<%=System.Environment.OSVersion.ToString()%>
+                                        </td>
+                                        <td>
+                                            CPU 数：<%=Environment.GetEnvironmentVariable("NUMBER_OF_PROCESSORS")%>个&nbsp;
+                                            &nbsp;
+                                            内存数： m
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            DOTNET 版本：<%=System.Environment.Version%>
+                                        </td>
+                                        <td>
+                                            CPU类型：<%=Environment.GetEnvironmentVariable("PROCESSOR_IDENTIFIER")%>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            服务器时区：<%=(DateTime.Now-DateTime.UtcNow).TotalHours> 0 ? "+"+(DateTime.Now-DateTime.UtcNow).TotalHours.ToString() : (DateTime.Now-DateTime.UtcNow).TotalHours.ToString()%>
+                                        </td>
+                                        <td>
+                                            脚本超时时间：<%=Server.ScriptTimeout%>
+                                            秒
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            开机运行时长：<%=((Double)System.Environment.TickCount/3600000).ToString("N2")%>小时
+                                        </td>
+                                        <td>
+                                            进程开始时间：<%try { Response.Write(System.Diagnostics.Process.GetCurrentProcess().StartTime); }
+                                            catch { Response.Write("未知"); }%>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            AspNet内存占用：<%try { Response.Write(((Double)System.Diagnostics.Process.GetCurrentProcess().WorkingSet / 1048576).ToString("N2")); }
+                                            catch { Response.Write("未知"); }%>
+                                            m
+                                        </td>
+                                        <td>
+                                            AspNet CPU时间：<%try { Response.Write(((TimeSpan)System.Diagnostics.Process.GetCurrentProcess().TotalProcessorTime).TotalSeconds.ToString("N0")); }
+                                            catch { Response.Write("未知"); }%>
+                                            秒
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

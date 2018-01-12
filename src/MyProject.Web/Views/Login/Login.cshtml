@@ -1,0 +1,62 @@
+﻿@using Abp.Web.Mvc.Extensions
+@{
+    ViewBag.Title = "Login";
+}
+
+
+@section styles
+    {
+    @Html.IncludeStyle("~/css/Login/Login.css")
+
+}
+<script src="~/js/jquery-1.7.1.min.js"></script>
+<script src="~/js/Login/Login.js"></script>
+<table width="100%" height="100%">
+
+    <tr>
+        <td align="center" valign="middle">
+            <table style="height: 283px; width: 620px; background: url(../../images/login/loginbg.jpg) no-repeat 0px 0px;">
+                <tr>
+                    <td>
+                        <div style="height: 213px; width: 620px;">
+                        </div>
+                        <div style="height: 70px; width: 620px; margin: 0px auto 0px auto;">
+                            <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 8px;">
+                                <tr>
+                                    <td align="center" id="tdInput">
+                                        <label id="LoginUserNameTitle" for="username">用户名</label>
+                                        <input type="text" class="inputText" MaxLength="20" name="username" id="username" />
+
+
+                                        <label id="LoginPwdTitle" for="password">密码</label>
+                                        <input type="Password" class="inputText" MaxLength="20" name="password" id="password" />
+
+                                        <span>&nbsp;&nbsp;验证码&nbsp;</span>
+                                        <input type="text" class="inputText" name="VerifyCode" id="VerifyCode" title="填写上边显示的信息，不分大小写" max="4" />
+                                        <img title="看不清楚，点击换一张图片" src="/Login/ImgCode" onclick="this.src='/Login/ImgCode?abc='+Math.random()" style="cursor: pointer;   border: 0px none;" />
+                                        @*
+                                            <asp:CheckBox ID="CheckBoxAutomaticLogin" runat="server" Text="免登录" Font-Size="12px" />
+                                            <asp:CheckBox ID="CheckBoxUserNameAndPwd" runat="server" Text="记住我" Font-Size="12px" />
+
+                                            <asp:ImageButton ID="submit" runat="server" align="absmiddle" ImageUrl="Images/login/loginbutton.jpg"
+                                                             Style="cursor: pointer" OnClick="submit_onclick" />*@
+                                        <input type="image" src="~/images/login/loginbutton.jpg" id="Submit" />
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="23" align="center" valign="bottom">
+                                        Copyright &copy; 2013 cnweb.cn Inc. All rights reserved. 牧星Manager 版权所有
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </td>
+    </tr>
+</table>
+
+
