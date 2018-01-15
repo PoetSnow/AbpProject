@@ -730,6 +730,31 @@
     <Content Include="images\success.png" />
     <Content Include="images\tableBg_left.gif" />
     <Content Include="images\tableBg_right.gif" />
+    <Content Include="images\TCImages\buticon.gif" />
+    <Content Include="images\TCImages\dialog_bg.jpg" />
+    <Content Include="images\TCImages\dialog_cb.gif" />
+    <Content Include="images\TCImages\dialog_cb.png" />
+    <Content Include="images\TCImages\dialog_closebtn.gif" />
+    <Content Include="images\TCImages\dialog_closebtn_over.gif" />
+    <Content Include="images\TCImages\dialog_ct.gif" />
+    <Content Include="images\TCImages\dialog_ct.png" />
+    <Content Include="images\TCImages\dialog_lb.gif" />
+    <Content Include="images\TCImages\dialog_lb.png" />
+    <Content Include="images\TCImages\dialog_lt.gif" />
+    <Content Include="images\TCImages\dialog_lt.png" />
+    <Content Include="images\TCImages\dialog_mlm.gif" />
+    <Content Include="images\TCImages\dialog_mlm.png" />
+    <Content Include="images\TCImages\dialog_mrm.gif" />
+    <Content Include="images\TCImages\dialog_mrm.png" />
+    <Content Include="images\TCImages\dialog_rb.gif" />
+    <Content Include="images\TCImages\dialog_rb.png" />
+    <Content Include="images\TCImages\dialog_rt.gif" />
+    <Content Include="images\TCImages\dialog_rt.png" />
+    <Content Include="images\TCImages\dir.txt" />
+    <Content Include="images\TCImages\icon_alert.gif" />
+    <Content Include="images\TCImages\icon_dialog.gif" />
+    <Content Include="images\TCImages\icon_query.gif" />
+    <Content Include="images\TCImages\window.gif" />
     <Content Include="images\th.gif" />
     <Content Include="images\thbg.gif" />
     <Content Include="images\topItem_exp.gif" />
@@ -3073,6 +3098,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="images\Icons\vssver2.scc" />
+    <Content Include="images\TCImages\vssver2.scc" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <None Include="Scripts\jquery-2.2.0-vsdoc.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />

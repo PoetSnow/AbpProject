@@ -25,7 +25,7 @@ namespace MyProject.Mic_Type.Dto
 
         public string previewURL { get; set; }
 
-        public string target { get; set; }
+        public int target { get; set; }
 
         public bool display { get; set; }
     }

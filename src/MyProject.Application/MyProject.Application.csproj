@@ -196,7 +196,10 @@
     <Compile Include="Mic_Operation\Dto\ListMic_OperationOutPut.cs" />
     <Compile Include="Mic_Operation\IMic_OperationAppService.cs" />
     <Compile Include="Mic_Operation\Mic_OperationAppService.cs" />
+    <Compile Include="Mic_Type\Dto\mic_TypeAddOutPut.cs" />
     <Compile Include="Mic_Type\Dto\typeList.cs" />
+    <Compile Include="Mic_Type\Dto\ValidateTypeInput.cs" />
+    <Compile Include="Mic_Type\Dto\ValidateTypeOutPut.cs" />
     <Compile Include="Mic_Type\IMic_TypeAppService.cs" />
     <Compile Include="Mic_Type\Mic_TypeAppService.cs" />
     <Compile Include="Mic_Type\Mic_TypeDtoMapping.cs" />

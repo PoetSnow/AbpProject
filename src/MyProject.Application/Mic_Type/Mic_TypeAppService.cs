@@ -17,6 +17,11 @@ namespace MyProject.Mic_Type
             _mic_TypeRepository = mic_TypeRepository;
         }
 
+        /// <summary>
+        /// 查询子级栏目
+        /// </summary>
+        /// <param name="parent_id"></param>
+        /// <returns></returns>
         public List<typeList> typeList(int parent_id)
         {
             List<typeList> list = new List<typeList>();
@@ -26,6 +31,33 @@ namespace MyProject.Mic_Type
                 list.Add(Mapper.Map<typeList>(item));
             }
             return list;
+        }
+
+        public mic_TypeAddOutPut AddType(typeList input)
+        {
+            mic_TypeAddOutPut outPut = new mic_TypeAddOutPut();
+            MyProject.Entities.Mic_Type mic_Type = new Entities.Mic_Type
+            {
+                type_name = input.type_name,
+                parent_id = input.parent_id,
+                order_id = input.order_id,
+                n_id = input.n_id,
+                url = input.url,
+                description = input.description,
+                previewURL = input.previewURL,
+                target = input.target,
+                display = input.display
+            };
+            var id = _mic_TypeRepository.InsertAndGetId(mic_Type);
+            if (id > 0)
+            {
+                outPut.state = id;
+            }
+            else
+            {
+                outPut.state = 0;
+            }
+            return outPut;
         }
     }
 }

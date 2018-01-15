@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Text;
+using MyProject.Mic_Type.Dto;
+using Abp.Web.Security.AntiForgery;
+
 namespace MyProject.Web.Controllers
 {
     public class MenuController : Controller
@@ -20,7 +23,7 @@ namespace MyProject.Web.Controllers
         // GET: Menu
         public ActionResult menu_status()
         {
-            GetProgramaData(0, "",0);
+            GetProgramaData(0, "", 0);
             ViewData["htmlStr"] = $"{str.ToString()}";
             return View();
         }
@@ -31,6 +34,12 @@ namespace MyProject.Web.Controllers
         }
 
 
+        [DisableAbpAntiForgeryTokenValidation]
+        public string AddType(typeList input)
+        {
+            var outPut = _mic_TypeAppservice.AddType(input);
+            return outPut.state.ToString();
+        }
 
 
         #region 栏目列表

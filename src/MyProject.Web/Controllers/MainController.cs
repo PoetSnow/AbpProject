@@ -70,11 +70,11 @@ namespace MyProject.Web.Controllers
                
                     switch (type.target)
                     {
-                        case "1":
+                        case 1:
                             str.AppendFormat("<a href=\"{0}\" target=\"left\" onclick=\"javascript:OnClickA('{2}');\" {3}><b>{1}</b></a>\r\n", iurlstr, itypename, itypeid, (i == 0 ? "class=\"current\"" : ""));
                             str.AppendFormat("<a href=\"{0}\" target=\"right\" style=\"padding-left:15px; display:none;\" id=\"{2}\">{1}</a>\r\n", idefaulturl, itypename, itypeid);
                             break;
-                        case "2":
+                        case 2:
                             str.AppendFormat("<a href=\"{0}\" target=\"_blank\" {3}><b>{1}</b></a>\r\n", idefaulturl, itypename, itypeid, (i == 0 ? "class=\"current\"" : ""));
                             break;
                         default:

@@ -21,5 +21,6 @@ namespace MyProject.EntityFramework.Repositories
 
             return list;
         }
+
     }
 }
