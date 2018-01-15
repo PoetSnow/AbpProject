@@ -47,16 +47,21 @@ namespace MyProject.Mic_Type
                 parent_id = input.parent_id,
                 order_id = input.order_id,
                 n_id = input.n_id,
-                url = input.url,
-                description = input.description,
-                previewURL = input.previewURL==""?"":input.previewURL,
                 target = input.target,
-                display = true
+                display = true,
+                url = string.IsNullOrEmpty(input.url) ? "javascript:;" : input.url,
+                previewURL = string.IsNullOrEmpty(input.previewURL) ? "" : input.previewURL
             };
             var id = _mic_TypeRepository.InsertAndGetId(mic_Type);
             if (id > 0)
             {
-                outPut.state = id;
+
+
+                MyProject.Entities.Mic_Type mic_Type1 = _mic_TypeRepository.FirstOrDefault(id);
+                mic_Type1.description = "Left?typeid=" + id;
+
+                _mic_TypeRepository.Update(mic_Type1);
+                outPut.state = 1;
             }
             else
             {

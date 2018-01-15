@@ -174,7 +174,7 @@ namespace MyProject.Web.Controllers
             {
                 if (ParentID == 0)
                 {
-                    _DefaultUrl = typeRow.url.ToString();
+                    _DefaultUrl = typeRow.url;
                 }
                 var nextTypeList = _mic_TypeAppservice.typeList(typeRow.Id);
                 int nextrow = nextTypeList.Count;
@@ -187,8 +187,8 @@ namespace MyProject.Web.Controllers
                 {
                     ispointer = " style='cursor:default;' ";
                 }
-                strHtml.Append("       <table id=\"tableItem" + typeRow.Id.ToString() + "\" name=\"tableItem\" cellspacing='0' cellpadding='0' border='0' " + ((ParentID != 0 && (typeRow.description=="null"?"": typeRow.description.ToString()) == _DefaultUrl) ? "class=\"treeItemCur\"" : "") + ">\r\n");
-                strHtml.Append("           <tr align='center' onclick='showhideit(" + typeRow.Id.ToString() + ")'>\r\n");
+                strHtml.Append("       <table id=\"tableItem" + typeRow.Id + "\" name=\"tableItem\" cellspacing='0' cellpadding='0' border='0' " + ((ParentID != 0 && (typeRow.description=="null"?"": typeRow.description.ToString()) == _DefaultUrl) ? "class=\"treeItemCur\"" : "") + ">\r\n");
+                strHtml.Append("           <tr align='center' onclick='showhideit(" + typeRow.Id + ")'>\r\n");
                 // 循环输出当前目录向右缩进数量
                 for (int j = 1; j < RecursiveCount; j++)
                 {
