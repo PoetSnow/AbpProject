@@ -32,7 +32,7 @@
                                     </tr>
                                 </table>
                                 <div style="padding-bottom: 5px; text-align: center;">
-                                    <input type="button" value="保存" onclick="Save()" class="btn_gray" />
+                                    <input type="button" value="保存"  class="btn_gray" id="btnSave1" />
 
                                     <input type="button" onclick="Dialog.close();" value="关闭" class="btn_gray" />
                                 </div>
@@ -42,7 +42,7 @@
                                             栏目名称：
                                         </td>
                                         <td>
-                                            <input type="text" style="width:80%"  class="inputtext" />
+                                            <input type="text" style="width:80%"  class="inputtext" id="type_name" />
                                          
                                             <span class="explain">必填项</span>
                                         </td>
@@ -52,7 +52,7 @@
                                             排序：
                                         </td>
                                         <td>
-                                            <input type="text" class="inputtext" style="width:80%" />
+                                            <input type="text" class="inputtext" style="width:80%" id="order_id" />
                                             <span class="explain">必填项，填写大于0的正整数</span>
                                         </td>
                                     </tr>
@@ -61,7 +61,7 @@
                                             打开类型：
                                         </td>
                                         <td>
-                                            <select>
+                                            <select id="target">
                                                 <option value="1">当前窗口</option>
                                                 <option value="2">新窗口</option>
                                             </select>
@@ -76,20 +76,10 @@
                                             <span class="explain">必填项</span>
                                         </td>
                                     </tr>
-                                    <tr style="height: 30px;">
-                                        <td style="width: 100px; text-align: right;">
-                                            栏目说明：
-                                        </td>
-                                        <td>
-                                            <textarea cols="15" style="width:60%"></textarea>
-                                            
-                                            <asp:TextBox ID="TextBox2" runat="server" Width="90%" Height="70" TextMode="MultiLine"></asp:TextBox>
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td colspan="2">
                                             <div style="padding: 5px; text-align: center;">
-                                                <input type="button" value="保存" onclick="Save()" class="btn_gray" />
+                                                <input type="button" value="保存"  class="btn_gray" id="btnSave2" />
                                                 <input type="button" onclick="Dialog.close();" value="关闭" class="btn_gray" />
                                             </div>
                                         </td>
@@ -102,22 +92,40 @@
             </td>
         </tr>
     </table>
-    <script type="text/javascript">
-        function Save()
-        {
-            var type_name = "首页";
-            var parent_id = 0;
-            var description = "http://www.baidu.com";
-            $.ajax({
-            type: "POST",//请求方式
-            data: "type_name=" + type_name + "&parent_id=" + parent_id + "&description=" + description+"",//ajax请求传的数据
-            
-            url: '/Menu/AddType',//使用@Url.Action找出当前控制器内的ajax方法
-            success: function (res) {//返回参数,对其进行处理
-                
-            }
+    <script type="text/javascript">      
+        $(function () {
+            $("#btnSave1,#btnSave2").on("click", function () {
+                var type_name = $("#type_name").val();
+                var parent_id = 0;
+                var description = $("#TextBoxDefaultUrl").val();
+                $.ajax({
+                    type: "POST",//请求方式
+                    data: "type_name=" + type_name + "&parent_id=" + parent_id,//ajax请求传的数据
+
+                    url: '/Menu/ValidateType',//使用@Url.Action找出当前控制器内的ajax方法
+                    success: function (res) {//返回参数,对其进行处理
+                        if (res == "0") {
+                            alert("同一父级下的子级栏目名称不能重复");
+                            return false;
+                        }
+                        else {
+                            //插入数据
+                            $.ajax({
+                                type: "POST",//请求方式
+                                data: "type_name=" + type_name + "&parent_id=" + parent_id + "&description=" + description + "",//ajax请求传的数据
+
+                                url: '/Menu/AddType',//使用@Url.Action找出当前控制器内的ajax方法
+                                success: function (res) {//返回参数,对其进行处理
+                                    alert(res);
+                                }
+                            });
+                        }
+                    }
+                });
+            })
         });
-        }
+   
+    
     </script>
 </body>
 </html>

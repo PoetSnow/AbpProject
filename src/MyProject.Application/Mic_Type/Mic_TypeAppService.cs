@@ -22,18 +22,23 @@ namespace MyProject.Mic_Type
         /// </summary>
         /// <param name="parent_id"></param>
         /// <returns></returns>
-        public List<typeList> typeList(int parent_id)
+        public List<typeListDto> typeList(int parent_id)
         {
-            List<typeList> list = new List<typeList>();
+            List<typeListDto> list = new List<typeListDto>();
             var table = _mic_TypeRepository.ChildColumnList(parent_id);
             foreach (var item in table)
             {
-                list.Add(Mapper.Map<typeList>(item));
+                list.Add(Mapper.Map<typeListDto>(item));
             }
             return list;
         }
 
-        public mic_TypeAddOutPut AddType(typeList input)
+        /// <summary>
+        /// 插入数据
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public mic_TypeAddOutPut AddType(typeListDto input)
         {
             mic_TypeAddOutPut outPut = new mic_TypeAddOutPut();
             MyProject.Entities.Mic_Type mic_Type = new Entities.Mic_Type
@@ -44,9 +49,9 @@ namespace MyProject.Mic_Type
                 n_id = input.n_id,
                 url = input.url,
                 description = input.description,
-                previewURL = input.previewURL,
+                previewURL = input.previewURL==""?"":input.previewURL,
                 target = input.target,
-                display = input.display
+                display = true
             };
             var id = _mic_TypeRepository.InsertAndGetId(mic_Type);
             if (id > 0)
@@ -55,6 +60,20 @@ namespace MyProject.Mic_Type
             }
             else
             {
+                outPut.state = 0;
+            }
+            return outPut;
+        }
+
+
+        public ValidateTypeOutPut ValidateType(ValidateTypeInput input)
+        {
+            ValidateTypeOutPut outPut = new ValidateTypeOutPut();
+            outPut.state = 1;
+            var list = _mic_TypeRepository.ValidateType(input.type_name, input.parent_id);
+            if (list.Count() > 0)
+            {
+                //有一条存在的数据。则不能添加
                 outPut.state = 0;
             }
             return outPut;

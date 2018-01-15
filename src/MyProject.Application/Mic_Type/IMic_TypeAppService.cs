@@ -15,15 +15,15 @@ namespace MyProject.Mic_Type
         /// </summary>
         /// <param name="parent_id"></param>
         /// <returns></returns>
-        List<typeList> typeList(int parent_id);
+        List<typeListDto> typeList(int parent_id);
 
         /// <summary>
         /// 插入数据
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        mic_TypeAddOutPut AddType(typeList input);
+        mic_TypeAddOutPut AddType(typeListDto input);
 
-      //  ValidateTypeOutPut ValidateType()
+        ValidateTypeOutPut ValidateType(ValidateTypeInput input);
     }
 }

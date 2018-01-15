@@ -12,13 +12,31 @@ namespace MyProject.EntityFramework.Repositories
     {
         public Mic_TypeRepository(IDbContextProvider<MyProjectDbContext> dbContextProvider) : base(dbContextProvider) { }
 
-
+        /// <summary>
+        /// 查询子级栏目
+        /// </summary>
+        /// <param name="parent_id"></param>
+        /// <returns></returns>
         public IQueryable<Mic_Type> ChildColumnList(int parent_id)
         {
             var list = from mic_Type in GetAll()
                        where mic_Type.parent_id == parent_id && mic_Type.display == true orderby mic_Type.order_id ascending
                        select mic_Type;
 
+            return list;
+        }
+
+        /// <summary>
+        /// 判断当前节点是否有相同的栏目名称
+        /// </summary>
+        /// <param name="type_name"></param>
+        /// <param name="parent_id"></param>
+        /// <returns></returns>
+        public IQueryable<Mic_Type> ValidateType(string type_name, int parent_id)
+        {
+            var list = from mic_Type in GetAll()
+                       where mic_Type.parent_id == parent_id && mic_Type.type_name == type_name
+                       select mic_Type;
             return list;
         }
 

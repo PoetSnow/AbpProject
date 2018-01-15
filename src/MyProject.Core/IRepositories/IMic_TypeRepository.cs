@@ -8,6 +8,8 @@ namespace MyProject.IRepositories
     {
         IQueryable<Mic_Type> ChildColumnList(int parent_id);
 
+        IQueryable<Mic_Type> ValidateType(string type_name, int parent_id);
+
     }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyProject.Mic_Type.Dto
 {
-    public class typeList
+    public class typeListDto
     {
         public int Id { get; set; }
 

@@ -13,7 +13,7 @@ namespace MyProject.Mic_Type
     {
         public void CreateMapping(IMapperConfigurationExpression mapperConfig)
         {
-            mapperConfig.CreateMap<MyProject.Entities.Mic_Type, typeList>();
+            mapperConfig.CreateMap<MyProject.Entities.Mic_Type, typeListDto>();
             
         }
     }

@@ -34,11 +34,23 @@ namespace MyProject.Web.Controllers
         }
 
 
+        /// <summary>
+        /// 添加栏目
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [DisableAbpAntiForgeryTokenValidation]
-        public string AddType(typeList input)
+        public string AddType(typeListDto input)
         {
             var outPut = _mic_TypeAppservice.AddType(input);
             return outPut.state.ToString();
+        }
+
+        [DisableAbpAntiForgeryTokenValidation]
+        public int ValidateType(ValidateTypeInput input)
+        {
+            var outPut = _mic_TypeAppservice.ValidateType(input);
+            return outPut.state;
         }
 
 
@@ -79,7 +91,7 @@ namespace MyProject.Web.Controllers
                 // 链接地址
                 str.Append("    <td align=\"left\">\r\n");
                 string description = typeList[i].description.Trim();
-                string previewURL = typeList[i].previewURL.Trim();
+                string previewURL = typeList[i].previewURL;
                 string defaulturl = typeList[i].url.Trim();
                 if (ParentID == 0)
                 {
