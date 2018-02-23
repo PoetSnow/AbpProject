@@ -773,6 +773,8 @@
     <Content Include="js\jquery-1.7.1.min.js" />
     <Content Include="js\Login\Login.js" />
     <Content Include="js\main.js" />
+    <Content Include="js\menu\menuAddlitle.js" />
+    <Content Include="js\menu\menuUpdate.js" />
     <Content Include="js\script.js" />
     <Content Include="js\zDialog.js" />
     <Content Include="js\zDrag.js" />
@@ -4029,6 +4031,8 @@
     <Content Include="Views\Main\AdminMain.cshtml" />
     <Content Include="Views\Menu\menu_status.cshtml" />
     <Content Include="Views\Menu\menu_Add.cshtml" />
+    <Content Include="Views\Menu\menu_Update.cshtml" />
+    <Content Include="Views\Menu\addlitle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

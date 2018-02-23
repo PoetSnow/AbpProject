@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Text;
 using MyProject.Mic_Type.Dto;
 using Abp.Web.Security.AntiForgery;
-
+using TypeModel = MyProject.Mic_Type.Dto.typeListDto;
 namespace MyProject.Web.Controllers
 {
     public class MenuController : Controller
@@ -33,6 +33,20 @@ namespace MyProject.Web.Controllers
             return View();
         }
 
+        public ActionResult menu_Update(int Id)
+        {
+            var typeModel = _mic_TypeAppservice.typeModel(Id);
+
+            return View(typeModel);
+        }
+
+        public ActionResult addlitle(int Id)
+        {
+            var typeModel = _mic_TypeAppservice.typeModel(Id);
+            return View(typeModel);
+
+        }
+
 
         /// <summary>
         /// 添加栏目
@@ -46,20 +60,59 @@ namespace MyProject.Web.Controllers
             return outPut.state.ToString();
         }
 
+        /// <summary>
+        /// 验证同级是否有重复的栏目
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [DisableAbpAntiForgeryTokenValidation]
-        public int ValidateType(ValidateTypeInput input)
+        public int ValidateType(ValidateTypeInPut input)
         {
             var outPut = _mic_TypeAppservice.ValidateType(input);
             return outPut.state;
         }
 
+        /// <summary>
+        /// 删除栏目
+        /// </summary>
+        /// <param name="inPut"></param>
+        /// <returns></returns>
+        [DisableAbpAntiForgeryTokenValidation]
+        public int DeleteTypeList(DeleteTypeInPut inPut)
+        {
+            var outPut = _mic_TypeAppservice.DeleteTypeList(inPut);
+            return outPut.state;
+        }
+
+
+        [DisableAbpAntiForgeryTokenValidation]
+        public string UpdateTypeState(UpdateTypeStateInPut inPut)
+        {
+            string strHtml = "";
+            var outPut = _mic_TypeAppservice.UpdateTypeState(inPut);
+            if (outPut.state==1)
+            {
+                if (inPut.status=="0")
+                {
+                    strHtml = "<a href=\"javascript:ModifyColumnDisplayAttribute('" + inPut.Id + "', '1');\" style=\"color:Red;\" title=\"点击启用\">禁用</a>";
+                }
+                else
+                {
+                    strHtml = "<a href=\"javascript:ModifyColumnDisplayAttribute('" + inPut.Id + "', '0');\" style=\"color: #555555;\" title=\"点击禁用\">启用</a>";
+                }
+               
+            }
+            return strHtml;
+        }
 
         #region 栏目列表
         void GetProgramaData(int ParentID, string Where, int RecursiveCount)
         {
             RecursiveCount = RecursiveCount + 1;
 
-            var typeList = _mic_TypeAppservice.typeList(ParentID);
+            //不可删除和编辑的栏目
+            List<int> listNum = new List<int> { 1, 2, 3, 4 };
+            var typeList = _mic_TypeAppservice.typeListAll(ParentID);
             for (int i = 0; i < typeList.Count; i++)
             {
                 _Number++;
@@ -76,16 +129,42 @@ namespace MyProject.Web.Controllers
                 }
                 int typeid = typeList[i].Id;
                 str.Append("<tr style=\"border-color:#DDDDDD;border-width:1px;border-style:solid;height:30px;\" " + (_Number % 2 == 0 ? " Class=\"odd\"" : "") + ">\r\n");
-                str.Append("    <td align=\"center\"><input type=\"checkbox\" name=\"prolid\" value=\"" + typeid + "\" /></td>\r\n");
-                str.Append("    <td align=\"center\" id=\"tdDistlay" + typeid + "\">" + (Convert.ToBoolean(typeList[i].display) == false ? "<a href=\"javascript:ModifyColumnDisplayAttribute('" + typeid + "', '1');\" style=\"color:Red;\" title=\"点击启用\">禁用</a>" : "<a href=\"javascript:ModifyColumnDisplayAttribute('" + typeid + "', '0');\" style=\"color: #555555;\" title=\"点击禁用\">启用</a>") + "</td>\r\n");
-                str.Append("    <td align=\"center\" style=\"text-align:left\">");
-                if (ParentID == 0)
+                if (listNum.Contains(typeList[i].Id))
                 {
-                    str.Append(paddingleft + "<strong><a href=\"javascript:menu_update1(" + typeid + ");\" style=\"color: #555555;\">" + typeList[i].type_name + "</a></strong>");
+                    str.Append("    <td align=\"center\"><input type=\"checkbox\" name=\"prolid\" value=\"" + typeid + "\" disabled=\"disabled\" /></td>\r\n");
+
                 }
                 else
                 {
-                    str.Append(paddingleft + "<a href=\"javascript:menu_update1(" + typeid + ");\" style=\"color: #555555;\">" + typeList[i].type_name + "</a>");
+                    str.Append("    <td align=\"center\"><input type=\"checkbox\" name=\"prolid\" value=\"" + typeid + "\" /></td>\r\n");
+                }
+
+                str.Append("    <td align=\"center\" id=\"tdDistlay" + typeid + "\">" + (Convert.ToBoolean(typeList[i].display) == false ? "<a href=\"javascript:ModifyColumnDisplayAttribute('" + typeid + "', '1');\" style=\"color:Red;\" title=\"点击启用\">禁用</a>" : "<a href=\"javascript:ModifyColumnDisplayAttribute('" + typeid + "', '0');\" style=\"color: #555555;\" title=\"点击禁用\">启用</a>") + "</td>\r\n");
+                str.Append("    <td align=\"center\" style=\"text-align:left\">");
+
+                if (ParentID == 0)
+                {
+                    if (listNum.Contains(typeList[i].Id))
+                    {
+                        str.Append(paddingleft + "<strong><a href=\"javascript:;\" style=\"color: #555555;\">" + typeList[i].type_name + "</a></strong>");
+                    }
+                    else
+                    {
+                        str.Append(paddingleft + "<strong><a href=\"javascript:menu_update1(" + typeid + ");\" style=\"color: #555555;\">" + typeList[i].type_name + "</a></strong>");
+                    }
+
+                }
+                else
+                {
+                    if (listNum.Contains(typeList[i].Id))
+                    {
+                        str.Append(paddingleft + "<a href=\"javascript:;\" style=\"color: #555555;\">" + typeList[i].type_name + "</a>");
+                    }
+                    else
+                    {
+                        str.Append(paddingleft + "<a href=\"javascript:menu_update1(" + typeid + ");\" style=\"color: #555555;\">" + typeList[i].type_name + "</a>");
+                    }
+
                 }
                 str.Append("    </td>\r\n");
                 // 链接地址

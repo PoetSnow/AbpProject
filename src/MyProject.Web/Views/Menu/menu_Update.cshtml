@@ -1,0 +1,146 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@model MyProject.Mic_Type.Dto.typeListDto
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>menu_Update</title>
+    <link href="~/css/Login/c.css" rel="stylesheet" />
+    <link href="~/css/Login/manage.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.7.1.min.js"></script>
+    <script src="~/js/zDialog.js"></script>
+    <script src="~/js/zDrag.js"></script>
+</head>
+<body>
+    <table width="98%" cellspacing="0" cellpadding="0" border="0" class="blockTable">
+        <tr>
+            <td width="65%" style="padding:6px 10px;" class="blockTd">
+                <div class="mframe">
+                    <table width="95%" cellspacing="0" cellpadding="0" style="border-bottom: #ddd 1px solid;">
+                        <tr>
+                            <td class="mm">
+                                <table id="color_code" runat="server" style="width: 100%; padding-bottom:5px;">
+                                    <tr align="right">
+                                        <td align="left">
+                                            当前位置：<%= MIC.AdminCommon.ReadCurrentDirectory(MIC.Common.ConvertToInt(MIC.AdminCommon.ColumnTypeID.栏目列表, -1))%> > 编辑
+                                        </td>
+                                        <td align="right"></td>
+                                    </tr>
+                                </table>
+                                <div style="padding-bottom: 5px; text-align: center;">
+                                    <input type="button" value="保存" class="btn_gray" id="btnSave1" />
+                                    <input type="button" onclick="Dialog.close();" value="关闭" class="btn_gray" />
+                                </div>
+                                <table class="server" cellpadding="0" cellspacing="1" style="width:100%;">
+                                    <tr style="height:30px;">
+                                        <td style="width:100px; text-align:right;">
+                                            栏目名称：
+                                        </td>
+                                        <td>
+                                            <input type="text" class="inputtext" style="width:80%" value="@Model.type_name" id="type_name" />
+
+                                            <span class="explain"> 必填项</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height:30px;">
+                                        <td style="width:100px; text-align:right;">
+                                            排序：
+                                        </td>
+                                        <td>
+                                            <input type="text" class="inputtext" style="width:80%" value="@Model.order_id" id="order_id" />
+                                            <span class="explain"> 必填项，填写大于0的正整数</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height:30px;">
+                                        <td style="width:100px; text-align:right;">
+                                            打开类型：
+                                        </td>
+                                        <td>
+                                            <input type="radio" value="1" name="target" @if (Model.target == 1) { @Html.Raw("checked=\"checked\"") } />当前窗口
+                                            <input type="radio" value="2" name="target" @if (Model.target == 2) { @Html.Raw("checked=\"checked\"") } />新窗口
+                                        </td>
+                                    </tr>
+                                    <tr style="height:30px;">
+                                        <td style="width:100px; text-align:right;">
+                                            链接地址：
+                                        </td>
+                                        <td>
+                                            <input type="text" class="inputtext" style="width:80%" value="@Model.description" id="description" />
+                                            <span class="explain"> 必填项</span>
+                                        </td>
+                                    </tr>
+                                    <tr id="trPreviewURL"  style="height:30px;">
+                                        <td style="width:100px; text-align:right;">
+                                            预览地址：
+                                        </td>
+                                        <td>
+                                            <input type="text" class="inputtext" style="width:80%" value="@Model.previewURL" id="previewURL" />
+                                            <span class="explain"> 点击标题时的预览地址</span>
+                                        </td>
+                                    </tr>
+                                    <tr id="trDefaultUrl"  style="height:30px;">
+                                        <td style="width:100px; text-align:right;">
+                                            默认加载链接：
+                                        </td>
+                                        <td>
+                                            <input type="text" class="inputtext" style="width:80%"  value="@Model.url" id="url"/>
+                                            <span class="explain"> 只有最顶级目录才有效</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div style="padding:5px; text-align:center;">
+                                                <input type="button" value="保存" class="btn_gray" id="btnSave2"  />
+                                                <input type="button" onclick="Dialog.close();" value="关闭" class="btn_gray" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script src="~/js/menu/menuUpdate.js"></script>
+    <script type="text/javascript">
+        menuUpdate.init(@Model.Id,@Model.parent_id);
+        @*$(function () {
+            var Id =@Model.Id;
+            $("#btnSave1,#btnSave2").on("click", function () {
+                var type_name = $("#type_name").val();
+                var order_id = $("#order_id").val();
+                var target = $('input[name="target"]:checked').val();
+                var description = $("#description").val();
+                var previewURL = $("#previewURL").val();
+                var url = $("#url").val();
+                if (type_name == "") {
+                    Dialog.alert("栏目名称不能为空！");
+                    return false;
+                }
+                if (order_id == "" ) {
+                    Dialog.alert("排序不能为空！");
+                    return false;
+                }
+                else {
+                     var reg = /^[1-9]*[0-9][0-9]*$/;
+                    if (!reg.test(order_id)) {
+                        Dialog.alert("排序应为正整数！");
+                        return false;
+                    }
+                }
+                if (description=="") {
+                    Dialog.alert("链接地址不能为空！");
+                    return false;
+                }   
+            })
+        })*@
+    </script>
+</body>
+</html>

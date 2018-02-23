@@ -10,7 +10,7 @@ a img { border: 0; }
 .inputtext { background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #9B9B9B; height: 25px; line-height: 25px; margin: 0; padding: 0 3px; }
 .inputbg { border: 0px; border-bottom: 1px solid #999999; background: transparent; }
 .trSplit td { border-top: 3px solid #e9e9e9; }
-.explain { background: #FEFFEF url(admin.gif) no-repeat 0 0; border: 1px solid #D1D401; color: #666; padding: 2px 5px 1px 5px; line-height: 1.8em; font-weight: normal; }
+.explain { background: #FEFFEF url(../../images/admin.gif) no-repeat 0 0; border: 1px solid #D1D401; color: #666; padding: 2px 5px 1px 5px; line-height: 1.8em; font-weight: normal; }
 
 .hidden { display: none; }
 
@@ -107,7 +107,7 @@ ul.sel li.chk { background: #DFEDFA; color: #333; }
 .showCss { padding: 0px; }
 .showCSS tr { event: expression(onmouseover=function() { this.style.backgroundColor='#ffffff'},onmouseout=function() {this.style.backgroundColor=''}); }
 
-.explain { background: #FEFFEF url(../style/admin/admin.gif) no-repeat 0 0; border: 1px solid #D1D401; color: #666; padding: 2px 5px 2px 20px; line-height: 1.8em; font-weight: normal; }
+.explain { background: #FEFFEF url(../../images/admin.gif) no-repeat 0 0; border: 1px solid #D1D401; color: #666; padding: 2px 5px 2px 20px; line-height: 1.8em; font-weight: normal; }
 
 tr.odd { background-color: #F9FBFC; }
 

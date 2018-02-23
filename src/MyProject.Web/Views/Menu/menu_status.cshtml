@@ -43,7 +43,7 @@
                                 <table id="color_code" runat="server" style="width: 100%; padding-bottom: 5px;">
                                     <tr align="right">
                                         <td align="left">
-                                            当前位置：<%= MIC.AdminCommon.ReadCurrentDirectory(MIC.Common.ConvertToInt(MIC.AdminCommon.ColumnTypeID.栏目列表, -1)) %>
+                                            当前位置：
                                         </td>
                                         <td align="right"></td>
                                     </tr>
@@ -54,7 +54,7 @@
                                     <input type="button" value="编辑" onclick="menu_update()" class="btn_gray" />
                                     <input type="button" value="启用" onclick="return ShowAll();" class="btn_gray" />
                                     <input type="button" value="禁用" onclick="return HideAll();" class="btn_gray" />
-                                    <input type="button" value="删除" onclick="return confirm('是否删除？删除之后数据不可恢复！')"  class="btn_gray" />
+                                    <input type="button" value="删除" onclick="DeleteType()" class="btn_gray" />
                                     
                                 </div>
                                 <table class="dataTable" cellspacing="1" cellpadding="1" style="text-align: center; width: 100%;">
@@ -75,7 +75,8 @@
             </td>
         </tr>
     </table>
-    <script type="text/javascript">
+    <script type="text/javascript">       
+        var obj = document.getElementsByName("prolid");
         //新建父级
         function menu_add() {
             var diag = new Dialog();
@@ -85,6 +86,130 @@
             diag.URL = "menu_Add";
             diag.show();
         }
+        //编辑
+        function menu_update1(id) {
+            var diag = new Dialog();
+            diag.Width = $(document.body).width();
+            diag.Height = $(document.body).outerWidth(true);
+            diag.Title = "编辑";
+            diag.URL = "menu_Update/" + id;
+            diag.show();
+        }
+        //全选
+        function CheckAll(state) {            
+            for (var i = 0; i < obj.length; i++) {
+
+                if (obj[i].disabled != true) {
+                    obj[i].checked = state;               
+                }
+              
+            }  
+            
+        }
+        //新建子级
+        function addlitle() {
+            var len = $("input[name='prolid']:checked").length;
+            if (len == 0) {
+                Dialog.alert("请选择要添加子级项！");
+            }
+            else if (len > 1) {
+                Dialog.alert("您选择了多条数据，只能选择一条数据！");
+            } else {
+                var diag = new Dialog();
+                diag.Width = $(document.body).width();
+                diag.Height = $(document.body).outerWidth(true);
+                diag.Title = "新建子级";
+                diag.URL = "addlitle/" + $("input[name='prolid']:checked").val();
+                diag.show();
+            }
+        }
+        //删除
+        function DeleteType() {
+            var ids = "";
+            if (confirm('是否删除？删除之后数据不可恢复！')) {
+                for (var i = 0; i < obj.length; i++) {
+                    if (obj[i].checked) {
+                        ids += obj[i].value+",";
+                    }
+                }
+                ids = ids.substring(0, ids.length - 1);
+                $.ajax({
+                    type: "POST",//请求方式
+                    data: "IdList=" + ids,//ajax请求传的数据
+                    url: '/Menu/DeleteTypeList',//使用@Url.Action找出当前控制器内的ajax方法
+                    success: function (res) {//返回参数,对其进行处理
+                        if (res == 1) {
+                            Dialog.alert('删除成功', function () { window.location.href = window.location.href; window.location.Reload(); });
+                        }
+                    }
+                });
+            }
+        }
+
+        function ModifyColumnDisplayAttribute(typeid, status) {
+            var statusname = "";            
+            switch (status.toString()) {
+                case "0":
+                    statusname = "禁用";
+                    break;
+                case "1":
+                    statusname = "启用";
+                    break;
+                default:
+                    break;
+            }
+            if (confirm("是否 " + statusname + " 当前栏目？")) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Menu/UpdateTypeState",
+                    data: "Id=" + typeid + "&status=" + status+"&random=" + Math.random(),
+                    success: function (retdata) {
+                        if (retdata != "") {
+                            $("#tdDistlay" + typeid).html(retdata);
+                        }
+                        else {
+                            Dialog.alert("保存失败！");
+                        }
+                    }
+                })
+            }
+        }
+       
+    </script>
+
+    <script type="text/javascript">
+            $.fn.smartFloat = function () {
+                var position = function (element) {
+                    var top = element.position().top; //当前元素对象element距离浏览器上边缘的距离
+                    var pos = element.css("position"); //当前元素距离页面document顶部的距离
+                    $(window).scroll(function () { //侦听滚动时
+                        var scrolls = $(this).scrollTop();
+                        if (scrolls > top) { //如果滚动到页面超出了当前元素element的相对页面顶部的高度
+                            if (window.XMLHttpRequest) { //如果不是ie6
+                                element.css({ //设置css
+                                    position: "fixed", //固定定位,即不再跟随滚动
+                                    top: 0 //距离页面顶部为0
+                                }).addClass("shadow"); //加上阴影样式.shadow
+                            } else { //如果是ie6
+                                element.css({
+                                    top: scrolls  //与页面顶部距离
+                                });
+                            }
+                        } else {
+                            element.css({ //如果当前元素element未滚动到浏览器上边缘，则使用默认样式
+                                position: pos,
+                                top: top
+                            }).removeClass("shadow"); //移除阴影样式.shadow
+                        }
+                    });
+                };
+                return $(this).each(function () {
+                    position($(this));
+                });
+            };
+            $(function () {
+                $(".sidebox").smartFloat();
+            })
     </script>
 </body>
 </html>

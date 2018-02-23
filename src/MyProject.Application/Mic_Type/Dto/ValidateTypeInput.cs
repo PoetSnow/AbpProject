@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyProject.Mic_Type.Dto
 {
-   public class ValidateTypeInput
+   public class ValidateTypeInPut
     {
         public string type_name { get; set; }
 

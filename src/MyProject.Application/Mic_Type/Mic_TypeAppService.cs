@@ -33,6 +33,18 @@ namespace MyProject.Mic_Type
             return list;
         }
 
+
+        public  List<typeListDto> typeListAll(int parent_id)
+        {
+            List<typeListDto> list = new List<typeListDto>();
+            var table = _mic_TypeRepository.ChildColumnListAll(parent_id);
+            foreach (var item in table)
+            {
+                list.Add(Mapper.Map<typeListDto>(item));
+            }
+            return list;
+        }
+
         /// <summary>
         /// 插入数据
         /// </summary>
@@ -71,16 +83,61 @@ namespace MyProject.Mic_Type
         }
 
 
-        public ValidateTypeOutPut ValidateType(ValidateTypeInput input)
+        public ValidateTypeOutPut ValidateType(ValidateTypeInPut input)
         {
             ValidateTypeOutPut outPut = new ValidateTypeOutPut();
             outPut.state = 1;
             var list = _mic_TypeRepository.ValidateType(input.type_name, input.parent_id);
-            if (list.Count() > 0)
+            if (list.Count() > 1)
             {
                 //有一条存在的数据。则不能添加
                 outPut.state = 0;
             }
+            return outPut;
+        }
+
+
+        public typeListDto typeModel(int Id)
+        {
+            var typeModel = _mic_TypeRepository.FirstOrDefault(Id);
+
+            var listDto = Mapper.Map<typeListDto>(typeModel);
+            return listDto;
+        }
+
+        public DeleteTypeOutPut DeleteTypeList(DeleteTypeInPut inPut)
+        {
+            DeleteTypeOutPut outPut = new DeleteTypeOutPut();
+
+            var count = _mic_TypeRepository.DeleteTypeList(inPut.IdList);
+            if (count > 0)
+            {
+                //删除成功
+                outPut.state = 1;
+            }
+            else
+            {
+                //删除失败
+                outPut.state = 0;
+            }
+            return outPut;
+        }
+
+        public UpdateTypeStateOutPut UpdateTypeState(UpdateTypeStateInPut inPut)
+        {
+            UpdateTypeStateOutPut outPut = new UpdateTypeStateOutPut();
+            outPut.state = 0;
+            var model = _mic_TypeRepository.FirstOrDefault(inPut.Id);
+            if (inPut.status=="0")
+            {
+                model.display = false;
+            }
+            else
+            {
+                model.display = true;
+            }
+            _mic_TypeRepository.Update(model);
+            outPut.state = 1;
             return outPut;
         }
     }
