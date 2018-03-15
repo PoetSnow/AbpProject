@@ -3896,9 +3896,11 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MyProjectControllerBase.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CacheHelp.cs" />
     <Compile Include="Helpers\CookieHtml.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Models\Account\LoginFormViewModel.cs" />
@@ -4033,6 +4035,7 @@
     <Content Include="Views\Menu\menu_Add.cshtml" />
     <Content Include="Views\Menu\menu_Update.cshtml" />
     <Content Include="Views\Menu\addlitle.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
