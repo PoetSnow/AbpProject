@@ -384,3 +384,5 @@ I:\PoetSnowDocument\AbpProject\src\Tools\MyProject.Migrator\obj\Debug\MyProject.
 I:\PoetSnowDocument\AbpProject\src\Tools\MyProject.Migrator\obj\Debug\MyProject.Migrator.csproj.CoreCompileInputs.cache
 I:\PoetSnowDocument\AbpProject\src\Tools\MyProject.Migrator\obj\Debug\MyProject.Migrator.exe
 I:\PoetSnowDocument\AbpProject\src\Tools\MyProject.Migrator\obj\Debug\MyProject.Migrator.pdb
+I:\PoetSnowDocument\AbpProject\src\Tools\MyProject.Migrator\bin\Debug\StackExchange.Redis.dll
+I:\PoetSnowDocument\AbpProject\src\Tools\MyProject.Migrator\bin\Debug\StackExchange.Redis.xml

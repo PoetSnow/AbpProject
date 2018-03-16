@@ -329,3 +329,4 @@ I:\PoetSnowDocument\AbpProject\src\MyProject.Core\bin\Debug\System.Runtime.Compi
 I:\PoetSnowDocument\AbpProject\src\MyProject.Core\obj\Debug\MyProject.Core.csproj.CoreCompileInputs.cache
 I:\PoetSnowDocument\AbpProject\src\MyProject.Core\obj\Debug\MyProject.Core.dll
 I:\PoetSnowDocument\AbpProject\src\MyProject.Core\obj\Debug\MyProject.Core.pdb
+I:\PoetSnowDocument\AbpProject\src\MyProject.Core\obj\Debug\MyProject.Core.csprojResolveAssemblyReference.cache

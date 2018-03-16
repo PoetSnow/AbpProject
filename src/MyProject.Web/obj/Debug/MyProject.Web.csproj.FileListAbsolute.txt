@@ -558,3 +558,5 @@ I:\PoetSnowDocument\AbpProject\src\MyProject.Web\obj\Debug\MyProject.Web.csprojR
 I:\PoetSnowDocument\AbpProject\src\MyProject.Web\obj\Debug\MyProject.Web.csproj.CoreCompileInputs.cache
 I:\PoetSnowDocument\AbpProject\src\MyProject.Web\obj\Debug\MyProject.Web.dll
 I:\PoetSnowDocument\AbpProject\src\MyProject.Web\obj\Debug\MyProject.Web.pdb
+I:\PoetSnowDocument\AbpProject\src\MyProject.Web\bin\StackExchange.Redis.dll
+I:\PoetSnowDocument\AbpProject\src\MyProject.Web\bin\StackExchange.Redis.xml
